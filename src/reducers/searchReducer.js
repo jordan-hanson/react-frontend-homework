@@ -1,9 +1,10 @@
 import {
-    TOGGLE_EDITING
-    // UPDATE_SEARCH_INPUT
+    TOGGLE_EDITING,
+    UPDATE_SEARCH_INPUT
 } from '../actions/searchActions';
 
 export const initialState = {
+    input: "",
     editing: false
 };
 
@@ -13,6 +14,12 @@ export const searchReducer = (state = initialState, action) => {
             return {
                 ...state,
                 editing: !state.editing
+            }
+        case UPDATE_SEARCH_INPUT:
+            return {
+                ...state,
+                input: action.payload,
+                editing: false
             }
         default:
             return state;
