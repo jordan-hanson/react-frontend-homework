@@ -4,7 +4,7 @@ import {
 } from '../actions/searchActions';
 
 export const initialState = {
-    input: "",
+    input: "Hotel Name",
     editing: false
 };
 
@@ -13,15 +13,17 @@ export const searchReducer = (state = initialState, action) => {
         case TOGGLE_EDITING:
             return {
                 ...state,
-                editing: !state.editing
-            }
+                editing: !state.editing,
+            };
         case UPDATE_SEARCH_INPUT:
             return {
                 ...state,
                 input: action.payload,
-                editing: false
-            }
+                editing: false,
+            };
         default:
             return state;
     }
-}
+};
+
+export default searchReducer

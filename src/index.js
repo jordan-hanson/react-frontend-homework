@@ -1,28 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'redux';
-
-import { createStore } from 'redux';
-import Search from './components/Search';
-import Hotels from './components/Properties';
+import { applyMiddleware, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from "redux-thunk";
 import './styles/style.scss';
-import { rootReducer } from './reducers/'
+import App from './components/App/App';
+import { rootReducer } from './reducers/';
 // import { searchReducer } from '../src/reducers/searchReducer';
 
-const store = createStore(rootReducer);
-
-function App() {
-    return (
-        <div className="App">
-            <Search />
-            <Hotels />
-        </div>
-    )
-}
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const rootElement = document.getElementById("root");
+
 ReactDOM.render(
     <Provider store={store}>
         <App />
-    </Provider>
-)
+    </Provider>,
+    rootElement
+);

@@ -3,7 +3,7 @@ import { toggleEditing, updateSearchInput } from '../actions/searchActions';
 
 import { connect } from 'react-redux';
 
-const Search = (props) => {
+const Search = ({ input, editing }) => {
 
     console.log(props)
 
@@ -39,7 +39,8 @@ const Search = (props) => {
 const mapStateToProps = (state) => {
     console.log(state)
     return {
-        searchInput: state.searchInput
+        input: state.input,
+        editing: state.editing
     }
 }
 
