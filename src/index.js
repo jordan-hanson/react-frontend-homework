@@ -1,6 +1,26 @@
 import React from 'react';
-import { render } from 'react-dom';
-import App from './components/App';
-import './styles/style.scss';
+import ReactDOM from 'react-dom';
+import { Provider } from 'redux';
 
-render(<App />, document.querySelector('#app'));
+import { createStore } from 'redux';
+import Search from './components/Search';
+import Properties from './components/Properties';
+import './styles/style.scss';
+// import {rootReducer} from './reducers/'
+import { searchReducer } from '../src/reducers/searchReducer';
+
+function App() {
+    return (
+        <div className="App">
+            <Search />
+            <Properties />
+        </div>
+    )
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+)
