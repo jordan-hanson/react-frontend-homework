@@ -6,10 +6,10 @@ import { createStore } from 'redux';
 import Search from './components/Search';
 import Hotels from './components/Properties';
 import './styles/style.scss';
-// import {rootReducer} from './reducers/'
-import { searchReducer } from '../src/reducers/searchReducer';
+import { rootReducer } from './reducers/'
+// import { searchReducer } from '../src/reducers/searchReducer';
 
-const store = createStore(searchReducer);
+const store = createStore(rootReducer);
 
 function App() {
     return (
