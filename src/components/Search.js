@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { toggleEditing, updateSearchInput } from '../actions/searchActions';
 
 import { connect } from 'react-redux';
+import './Hotels.style.scss';
 
 const Search = ({ input, editing }) => {
 
-    console.log(props)
+    console.log(input, editing)
 
     const [searchInput, setSearchInput] = useState();
 
 
     const handleChanges = e => {
+        console.log(e.target.value)
         setSearchInput(e.target.value)
     };
 
