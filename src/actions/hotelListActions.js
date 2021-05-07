@@ -10,10 +10,10 @@ export const getHotels = () => dispatch => {
     axios
         .get('http://localhost:8080/rest/rates')
         .then(res => {
-            console.log(res)
-            console.log(res.data)
-            const hotelData = res.data
-            dispatch({ type: FETCHING_HOTELS_SUCCESS, payload: hotelData })
+            console.log("apihotel action", res)
+            console.log("apihotel action", res.data.results.hotels[0])
+            // const hotelData = res.data.results
+            dispatch({ type: FETCHING_HOTELS_SUCCESS, payload: res.data.results })
         })
         .catch(err => {
             dispatch({ FETCHING_HOTELS_FAILURE, payload: err })

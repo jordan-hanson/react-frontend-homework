@@ -10,15 +10,14 @@ const Search = ({ input, editing }) => {
 
     const [searchInput, setSearchInput] = useState();
 
-
     const handleChanges = e => {
         console.log(e.target.value)
         setSearchInput(e.target.value)
     };
 
     return (
-        <div>
-            <h1 className="filters">Hotel name</h1>
+        <div className="filters">
+            <h1>Hotel name</h1>
             <input
                 className="input"
                 type="text"
