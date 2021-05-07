@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { toggleEditing, updateSearchInput } from '../actions/searchActions';
+import { filteredHotels } from '../actions/hotelListActions';
 
 import { connect } from 'react-redux';
 import './Hotels.style.scss';
 
-const Search = ({ hotels, input, editing }) => {
+const Search = ({ hotels, input }) => {
 
     console.log(hotels)
-
+    const [hotelsInState, setHotelsInState] = useState(hotels)
     const [searchInput, setSearchInput] = useState(input);
 
     console.log(searchInput)
@@ -16,14 +17,13 @@ const Search = ({ hotels, input, editing }) => {
         setSearchInput(e.target.value)
         console.log(searchInput)
     };
-    // h => h.name.includes(searchInput)
     const onClick = () => {
         console.log(hotels.hotels)
         let hotelArray = hotels.hotels
-        const newHotels = hotelArray.map(h => console.log(h.hotelStaticContent.name));
+        const newHotels = hotelArray.filter(h => h.hotelStaticContent.name.includes(searchInput));
         console.log(newHotels)
+        setHotelsInState(newHotels)
     }
-
 
     return (
         <div className="filters">
@@ -43,6 +43,7 @@ const Search = ({ hotels, input, editing }) => {
             <button className="button" onClick={onClick}>Submit</button>
             <button className="button">Reset</button>
         </div>
+
     )
 };
 

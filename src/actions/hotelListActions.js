@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCHING_HOTELS = 'FETCHING_HOTELS';
 export const FETCHING_HOTELS_SUCCESS = 'FETCHING_HOTELS_SUCCESS';
 export const FETCHING_HOTELS_FAILURE = 'FETCHING_HOTELS_FAILURE';
+export const FILTERED_HOTEL_LIST = "FILTERED_HOTEL_LIST";
 
 export const getHotels = () => dispatch => {
     dispatch({ type: FETCHING_HOTELS })
@@ -15,4 +16,9 @@ export const getHotels = () => dispatch => {
         .catch(err => {
             dispatch({ FETCHING_HOTELS_FAILURE, payload: err })
         })
+}
+
+export const filteredHotels = (hotelList) => dispatch => {
+    console.log(hotelList)
+    dispatch({ type: FILTERED_HOTEL_LIST, payload: hotelList })
 }
