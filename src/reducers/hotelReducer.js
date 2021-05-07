@@ -11,6 +11,9 @@ const initialState = {
 }
 
 export const hotelReducer = (state = initialState, action) => {
+    console.log(state, "state in hotel reducer")
+    console.log(action, "action in hotel reducer")
+
     switch (action.type) {
         case FETCHING_HOTELS:
             return {

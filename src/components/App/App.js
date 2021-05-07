@@ -18,8 +18,6 @@ function App(props) {
             .catch((err) => console.log(err));
     }, []);
 
-    console.log("App is rendered", props)
-    console.log(hotels)
     return (
         <div className="App">
             <h1>Hotel Search Application</h1>

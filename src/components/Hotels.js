@@ -6,7 +6,6 @@ import './Hotels.style.scss';
 const Hotels = ({ hotels, loading, error, getHotels }) => {
 
     useEffect(() => {
-        console.log("got hotels")
         getHotels()
     }, [])
 
@@ -16,8 +15,6 @@ const Hotels = ({ hotels, loading, error, getHotels }) => {
     if (error) {
         return <h2>Woops! Something went wrong. Try again.</h2>
     }
-    console.log(hotels)
-    // console.log(hotels.hotels.length)
     return (
         <div className="hotel-list">
             {hotels ?
@@ -61,8 +58,6 @@ const Hotels = ({ hotels, loading, error, getHotels }) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
-    console.log("hotels line 61", state.hotelReducer.hotels[0])
     return {
         hotels: state.hotelReducer.hotels[0],
         loading: state.loading,

@@ -4,11 +4,13 @@ import {
 } from '../actions/searchActions';
 
 export const initialState = {
-    input: "Hotel Name",
+    input: "",
     editing: false
 };
 
 export const searchReducer = (state = initialState, action) => {
+    console.log(state, "state in search reducer")
+    console.log(action, "action in search reducer")
     switch (action.type) {
         case TOGGLE_EDITING:
             return {
