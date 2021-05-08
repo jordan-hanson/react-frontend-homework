@@ -50,7 +50,7 @@ const Hotels = ({ hotels, loading, error, getHotels }) => {
                         No hotels available at this time..
                     </p> :
                 <p>
-                    No hotels available.
+                    No hotels to show based upon search.
                     </p>
             }
         </div>
