@@ -1,11 +1,22 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { initialState } from '../../reducers/searchReducer'
+
 import App from './App';
+import { rootReducer } from '../../reducers';
 
-describe('App', () => {
-    const wrapper = shallow(<App />);
+function renderWithRedux(
+    ui,
+    { initialState, store = createStore(rootReducer, initialState) } = {}
+) {
+    return {
+        ...render(<Provider store={store}>{ui}</Provider>), store
+    }
 
-    it('renders the component', () => {
-        expect(wrapper.find('.app-container').exists()).toBe(true);
-    });
-});
+}
+test("Should render Search without errors", () => {
+    renderWithRedux(<App />)
+})
