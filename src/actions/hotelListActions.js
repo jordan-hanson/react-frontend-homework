@@ -11,6 +11,7 @@ export const getHotels = () => dispatch => {
     axios
         .get('http://localhost:8080/rest/rates')
         .then(res => {
+            console.log(res.data.results.hotels)
             dispatch({ type: FETCHING_HOTELS_SUCCESS, payload: res.data.results })
         })
         .catch(err => {
@@ -18,7 +19,26 @@ export const getHotels = () => dispatch => {
         })
 }
 
-export const filteredHotels = (hotelList) => dispatch => {
-    console.log(hotelList)
-    dispatch({ type: FILTERED_HOTEL_LIST, payload: hotelList })
+export const filteredHotels = (hotelArray, searchInput, selectedField) => dispatch => {
+    console.log("hotellistaction")
+    console.log(hotelArray)
+    console.log(searchInput)
+    console.log(selectedField)
+    const newHotels = hotelArray.filter(h => h.hotelStaticContent.name.includes(searchInput));
+    if (selectedField == "recommended") {
+        dispatch({ type: FILTERED_HOTEL_LIST, payload: newHotels })
+    }
+    if (selectedField == "low-to-high") {
+        const ascending = newHotels.sort(function (a, b) {
+            return a.lowestAveragePrice.amount - b.lowestAveragePrice.amount
+        })
+        dispatch({ type: FILTERED_HOTEL_LIST, payload: ascending })
+    }
+    if (selectedField == "high-to-low") {
+        const descending = newHotels.sort(function (a, b) {
+            return b.lowestAveragePrice.amount - a.lowestAveragePrice.amount
+        })
+        console.log(descending)
+        dispatch({ type: FILTERED_HOTEL_LIST, payload: descending })
+    }
 }

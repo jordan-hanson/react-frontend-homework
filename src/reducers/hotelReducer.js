@@ -21,9 +21,11 @@ export const hotelReducer = (state = initialState, action) => {
                 loading: true
             };
         case FETCHING_HOTELS_SUCCESS:
+            console.log(action.payload.hotels)
+            let hotelList = action.payload.hotels
             return {
                 ...state,
-                hotels: [action.payload],
+                hotels: hotelList,
                 loading: false
             };
         case FETCHING_HOTELS_FAILURE:
@@ -34,9 +36,10 @@ export const hotelReducer = (state = initialState, action) => {
             }
         case FILTERED_HOTEL_LIST:
             console.log("this was hit")
+            console.log(action.payload)
             return {
                 ...state,
-                hotels: [action.payload]
+                hotels: action.payload
             }
         default:
             return state;

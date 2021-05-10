@@ -11,7 +11,6 @@ function App(props) {
 
     return (
         <div className="App">
-            <h1>Hotel Search Application</h1>
             <Search />
             <Hotels />
         </div>

@@ -18,9 +18,9 @@ const Hotels = ({ hotels, loading, error, getHotels }) => {
     return (
         <div className="hotel-list">
             {hotels ?
-                hotels.hotels.length > 0 ?
+                hotels.length > 0 ?
                     (
-                        hotels.hotels.map(hotel => (
+                        hotels.map(hotel => (
                             <div className="hotel-card" key={hotel.id}>
                                 <div
                                     className="image"
@@ -58,8 +58,13 @@ const Hotels = ({ hotels, loading, error, getHotels }) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.hotelReducer.hotels)
+    // this equals length of 1 as an array of arrays//
+
+    console.log(state.hotelReducer.hotels[0])
+    // this equals the correct hotel list.
     return {
-        hotels: state.hotelReducer.hotels[0],
+        hotels: state.hotelReducer.hotels,
         loading: state.loading,
         error: state.error
     }

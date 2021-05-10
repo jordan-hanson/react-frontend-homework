@@ -5,9 +5,9 @@ import { filteredHotels } from '../actions/hotelListActions';
 import { connect } from 'react-redux';
 import './Hotels.style.scss';
 
-const Search = ({ hotels, input }) => {
+const Search = ({ hotels, input, filteredHotels }) => {
 
-    console.log(hotels)
+    console.log(filteredHotels)
     const [hotelsInState, setHotelsInState] = useState(hotels);
     const [searchInput, setSearchInput] = useState(input);
     const [selectedField, setSelectedField] = useState("");
@@ -22,27 +22,12 @@ const Search = ({ hotels, input }) => {
     const onChange = e => {
         setSelectedField(e.target.value)
     }
-    const newList = () => {
-        console.log(hotels.hotels)
-        let hotelArray = hotels.hotels
-        const newHotels = hotelArray.filter(h => h.hotelStaticContent.name.includes(searchInput));
-        if (selectedField == "recommended") {
-            setHotelsInState(newHotels)
-        }
-        if (selectedField == "low-to-high") {
-            const ascending = newHotels.sort(function (a, b) {
-                return a.lowestAveragePrice.amount - b.lowestAveragePrice.amount
-            })
-            setHotelsInState(ascending)
-        }
-        if (selectedField == "high-to-low") {
-            const descending = newHotels.sort(function (a, b) {
-                return b.lowestAveragePrice.amount - a.lowestAveragePrice.amount
-            })
-            setHotelsInState(descending)
-        }
+    const newList = e => {
+        e.preventDefault();
+        let hotelArray = hotels
+        filteredHotels(hotelArray, searchInput, selectedField)
     }
-    console.log(hotelsInState)
+    // console.log(hotelsInState)
     return (
         <div className="filters">
             <h1>Hotel name</h1>
@@ -59,7 +44,7 @@ const Search = ({ hotels, input }) => {
                 <option name="high-to-low" value="high-to-low" >Price high-to-low</option>
             </select>
             <button className="button" onClick={newList}>Submit</button>
-            <button className="button">Reset</button>
+            {/* <button className="button">Reset</button> */}
         </div>
 
     )
@@ -71,8 +56,8 @@ const mapStateToProps = (state) => {
     return {
         input: state.searchReducer.input,
         editing: state.searchReducer.editing,
-        hotels: state.hotelReducer.hotels[0]
+        hotels: state.hotelReducer.hotels
     }
 }
 
-export default connect(mapStateToProps, { toggleEditing, updateSearchInput })(Search);
+export default connect(mapStateToProps, { toggleEditing, updateSearchInput, filteredHotels })(Search);
