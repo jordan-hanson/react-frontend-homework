@@ -34,6 +34,7 @@ const Search = ({ hotels, input, filteredHotels }) => {
                 className="input"
                 type="text"
                 name="searchInput"
+                placeholder="Hotel"
                 value={searchInput}
                 onChange={handleChanges}
             />

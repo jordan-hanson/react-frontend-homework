@@ -8,7 +8,6 @@ import Hotels from '../Hotels';
 
 function App(props) {
 
-
     return (
         <div className="App">
             <Search />
