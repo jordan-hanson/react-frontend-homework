@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
+import '@testing-library/jest-dom/extend-expect';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { initialState } from '../reducers/searchReducer'
@@ -18,11 +19,14 @@ function renderWithRedux(
 
 }
 test("Should render Search without errors", () => {
-    renderWithRedux(<Search />)
+
+    const { getByText } = renderWithRedux(<Search />)
+
     const h1Title = screen.getByText(/hotel name/i)
     const recommended = screen.getByText(/recommended/i)
     const ascending = screen.getByText(/high-to-low/i)
     const descending = screen.getByText(/low-to-high/i)
 
+    expect(h1Title).toBeInTheDocument()
     // const submitButton = fireEvent.click(screen.getByText(/submit/i))
 })

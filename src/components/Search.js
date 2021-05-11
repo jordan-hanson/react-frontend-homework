@@ -8,7 +8,6 @@ import './Hotels.style.scss';
 const Search = ({ hotels, input, filteredHotels }) => {
 
     console.log(filteredHotels)
-    const [hotelsInState, setHotelsInState] = useState(hotels);
     const [searchInput, setSearchInput] = useState(input);
     const [selectedField, setSelectedField] = useState("");
 
@@ -44,7 +43,6 @@ const Search = ({ hotels, input, filteredHotels }) => {
                 <option name="high-to-low" value="high-to-low" >Price high-to-low</option>
             </select>
             <button className="button" onClick={newList}>Submit</button>
-            {/* <button className="button">Reset</button> */}
         </div>
 
     )
