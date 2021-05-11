@@ -19,4 +19,10 @@ function renderWithRedux(
 }
 test("Should render Search without errors", () => {
     renderWithRedux(<Search />)
+    const h1Title = screen.getByText(/hotel name/i)
+    const recommended = screen.getByText(/recommended/i)
+    const ascending = screen.getByText(/high-to-low/i)
+    const descending = screen.getByText(/low-to-high/i)
+
+    // const submitButton = fireEvent.click(screen.getByText(/submit/i))
 })
