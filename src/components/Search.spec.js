@@ -7,7 +7,9 @@ import { Provider } from 'react-redux';
 import { initialState } from '../reducers/searchReducer'
 
 import Search from './Search';
+import { filteredHotels } from './Search';
 import { rootReducer } from '../reducers/index';
+import { filteredHotels } from '../actions/hotelListActions';
 
 function renderWithRedux(
     ui,
@@ -20,7 +22,7 @@ function renderWithRedux(
 }
 test("Should render Search without errors", () => {
 
-    const { getByText } = renderWithRedux(<Search />)
+    renderWithRedux(<Search />)
 
     const h1Title = screen.getByText(/hotel name/i)
     const recommended = screen.getByText(/recommended/i)
@@ -28,5 +30,18 @@ test("Should render Search without errors", () => {
     const descending = screen.getByText(/low-to-high/i)
 
     expect(h1Title).toBeInTheDocument()
-    // const submitButton = fireEvent.click(screen.getByText(/submit/i))
+    expect(recommended).toBeInTheDocument()
+    expect(ascending).toBeInTheDocument()
+    expect(descending).toBeInTheDocument()
+})
+
+test("Fire event to submit filtered hotel form", () => {
+    renderWithRedux(<Search />)
+
+    const submitButton = screen.getByText(/submit/i)
+    console.log(submitButton)
+
+    expect(submitButton).toBeInTheDocument()
+    fireEvent.click(submitButton)
+    //  Test fails with my mock action not created.
 })
